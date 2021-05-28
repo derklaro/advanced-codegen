@@ -2,7 +2,7 @@ os: linux
 language: java
 dist: focal
 jdk:
-  - openjdk8
+  - openjdk10
 
 before_install:
   - chmod +x gradlew
