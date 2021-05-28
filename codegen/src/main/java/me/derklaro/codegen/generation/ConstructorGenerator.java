@@ -81,7 +81,7 @@ public class ConstructorGenerator implements Generator {
   public static @NotNull Collection<ConstructorGenerator> noArgs(@NotNull CtType<?> type,
                                                                  @Nullable Collection<? extends CtConstructor<?>> constructors) {
     // find all super constructors with the most amount of argument (all args constructors)
-    Collection<CtConstructor<?>> ctConstructors = findConstructors(constructors, true);
+    Collection<? extends CtConstructor<?>> ctConstructors = findConstructors(constructors, true);
     if (ctConstructors != null && !ctConstructors.isEmpty()) {
       return ctConstructors.stream()
         .map(ctConstructor -> new ConstructorGenerator(type, PAIR_EMPTY_DEQUE, ctConstructor))
@@ -104,7 +104,7 @@ public class ConstructorGenerator implements Generator {
                                                                   @Nullable Collection<? extends CtConstructor<?>> constructors) {
     getterMethods.removeIf(pair -> pair.getMethod().getType().getQualifiedName().equals("void"));
     // find all super constructors with the most amount of argument (all args constructors)
-    Collection<CtConstructor<?>> ctConstructors = findConstructors(constructors, false);
+    Collection<? extends CtConstructor<?>> ctConstructors = findConstructors(constructors, false);
     if (ctConstructors != null && !ctConstructors.isEmpty()) {
       return ctConstructors.stream()
         .map(ctConstructor -> new ConstructorGenerator(type, new ArrayDeque<>(getterMethods), ctConstructor))
@@ -115,8 +115,8 @@ public class ConstructorGenerator implements Generator {
     }
   }
 
-  protected static @Nullable Collection<CtConstructor<?>> findConstructors(@Nullable Collection<? extends CtConstructor<?>> constructors,
-                                                                           boolean lestArguments) {
+  protected static @Nullable Collection<? extends CtConstructor<?>> findConstructors(@Nullable Collection<? extends CtConstructor<?>> constructors,
+                                                                                     boolean lestArguments) {
     // just return null when there is no possibility for a constructor
     if (constructors == null || constructors.isEmpty()) {
       return null;
