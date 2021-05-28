@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
  * Wraps the return value of a method into the provided {@link #in()}.
  * This will only work for getter methods generated in classes
  * annotated with {@link Generate}.
- * <p>
+ * <br>
  * Example:
  * Your method in your interface may look like:
  * <pre>
